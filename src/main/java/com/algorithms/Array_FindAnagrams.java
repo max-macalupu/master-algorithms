@@ -1,22 +1,44 @@
 package com.algorithms;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 //Give array of string, find anagrams groups
 public class Array_FindAnagrams {
 
     public static void main(String[] args) {
         String [] words = {"cat", "atc", "book", "oobk", "car", "rac", "pen", "nep", "cta", "npe"};
-        processFirstWay(words);
+//        processFirstWay(words);
         processSecondWay(words);
     }
 
     private static void processSecondWay(String[] words) {
         Map<String, List<String>> anagrams = getAnagramsWords(words);
+        anagrams.forEach((x, y) -> {
+          System.out.println();
+          y.forEach( t -> {
+                  System.out.print(t + ",");
+          });
+        });
     }
 
     private static Map<String,List<String>> getAnagramsWords(String[] words) {
-        return null;
+//        Map<String, List<String>> anagramsMap = new HashMap<>();
+        return Arrays.stream(words).collect(Collectors.groupingBy(x -> sortedWord(x)));
+//        for (String word: words) {
+//            String sortedWord = sortedWord(word);
+//            if (anagramsMap.get(sortedWord) == null) {
+//                anagramsMap.put(sortedWord, new ArrayList<>());
+//            }
+//            anagramsMap.get(sortedWord).add(word);
+//        }
+//        return anagramsMap;
+    }
+
+    private static String sortedWord(String word) {
+        char[] characters = word.toCharArray();
+        Arrays.sort(characters);
+        return String.valueOf(characters);
     }
 
     private static void processFirstWay(String[] words) {

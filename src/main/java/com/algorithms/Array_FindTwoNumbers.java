@@ -1,6 +1,5 @@
 package com.algorithms;
 
-
 import java.util.*;
 
 //Give a array find the two index's numbers that add up the target
@@ -28,5 +27,4 @@ public class Array_FindTwoNumbers {
         }
         return indexList;
     }
-
 }
